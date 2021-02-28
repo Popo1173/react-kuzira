@@ -11,12 +11,12 @@ function handler (req,res) {
     //URLの判断
     const url = req.url
     //トップページか
-    if (url === '/' && url === '/index.html'){
-        showIndexPage(req,res)
+    if (url === '/' || url === '/index.html') {
+        showIndexPage(req, res)
         return
     }
     //サイコロページか
-    if (url.substr(0, 6) === '/dice') {
+    if (url.substr(0, 6) === '/dice/') {
         showDicePage(req, res)
         return
     }
@@ -29,12 +29,12 @@ function handler (req,res) {
 //インデックスページがあった時
 function shoIndexPage (req, res) {
     //HTTPヘッダ出力
-    res.writeHead(200, {'content-Type': 'text/html'})
+    res.writeHead(200,ctype)
     //レスポンス本体を出力
     const html = '<h1>サイコロページの案内</h1>\n' +
         '<p><a href="/dice/6">6面体サイコロ</a></p>' +
         '<p><a href="/dice/12">12面体サイコロ</a></p>'
-    res.ent(html)
+    res.end(html)
 }
 
 
